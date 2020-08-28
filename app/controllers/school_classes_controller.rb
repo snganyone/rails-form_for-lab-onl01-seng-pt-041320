@@ -17,13 +17,14 @@ class SchoolClassesController < ApplicationController
 
     def create
         @class = SchoolClass.new(params.require(:school_class).permit(:title, :room_number))
-        redirect_to school_class_path(@class)
+        @class.save
+        redirect_to school_classes_path(@class)
     end
     
     def update
         @class = SchoolClass.find(params[:id])
         @class.update(params.require(:school_class).permit(:title))
-        redirect_to school_class_path(@class)
+        redirect_to school_classes_path(@class)
     end
 
     private
